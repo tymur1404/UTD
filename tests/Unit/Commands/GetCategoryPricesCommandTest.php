@@ -17,7 +17,6 @@ class GetCategoryPricesCommandTest extends TestCase
 
     public function testHandle()
     {
-        // Создаем заглушку для Http класса
         $httpMock = Http::fake([
             '*' => Http::response([
                 ['category' => 'Electronics', 'price' => 10],
@@ -27,23 +26,17 @@ class GetCategoryPricesCommandTest extends TestCase
             ]),
         ]);
 
-        // Регистрируем экземпляр заглушки Http в контейнере приложения
         App::instance(Http::class, $httpMock);
 
-        // Захватываем вывод в буфер
         ob_start();
 
-        // Создаем экземпляр команды и вызываем метод handle
         $this->artisan('get:category-prices');
 
-        // Получаем вывод из буфера
         $output = ob_get_clean();
 
-        // Проверяем, что вывод соответствует ожидаемому результату
         $expectedOutput = "Electronics - 30\nClothing - 40\n";
         $this->assertSame($expectedOutput, $output);
 
-        // Проверяем, что запрос к API был выполнен
         $httpMock->assertSent(function ($request) {
             return $request->url() === 'https://fakestoreapi.com/products';
         });
