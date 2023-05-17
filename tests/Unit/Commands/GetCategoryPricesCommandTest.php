@@ -1,10 +1,8 @@
 <?php
 namespace Tests\Unit\Commands;
 
-use App\Commands\GetCategoryPricesCommand;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Http\Client\Response;
 use Tests\TestCase;
 
 class GetCategoryPricesCommandTest extends TestCase
