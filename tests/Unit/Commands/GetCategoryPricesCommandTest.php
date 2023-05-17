@@ -11,7 +11,6 @@ class GetCategoryPricesCommandTest extends TestCase
 {
     protected function getEnvironmentSetUp($app)
     {
-        // Устанавливаем базовый путь приложения
         $app['path.base'] = __DIR__.'/../../';
     }
 
@@ -29,9 +28,7 @@ class GetCategoryPricesCommandTest extends TestCase
         App::instance(Http::class, $httpMock);
 
         ob_start();
-
         $this->artisan('get:category-prices');
-
         $output = ob_get_clean();
 
         $expectedOutput = "Electronics - 30\nClothing - 40\n";
