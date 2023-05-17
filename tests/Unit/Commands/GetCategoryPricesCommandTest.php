@@ -9,11 +9,6 @@ use Tests\TestCase;
 
 class GetCategoryPricesCommandTest extends TestCase
 {
-    protected function getEnvironmentSetUp($app)
-    {
-        $app['path.base'] = __DIR__.'/../../';
-    }
-
     public function testHandle()
     {
         $httpMock = Http::fake([
